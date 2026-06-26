@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peperì Business — Convivialità Mediterranea per la tua azienda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#3a51a0;
+  --blue-deep:#2c3f80;
+  --blue-ink:#1b2547;
+  --cream:#efece1;
+  --cream-soft:#f5f3ea;
+  --gold:#bf9f4f;
+  --gold-soft:#c9ab63;
+  --paper:#fbfaf5;
+  --shadow:rgba(27,37,71,.14);
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Hanken Grotesk',sans-serif;
+  background:var(--cream);
+  color:var(--blue-ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.serif{font-family:'Fraunces',serif;font-weight:400;line-height:1.05;letter-spacing:-.01em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.eyebrow{
+  font-family:'Hanken Grotesk',sans-serif;
+  text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;font-weight:600;
+  color:var(--gold);display:block;margin-bottom:18px;
+}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+/* decorative motif */
+.motif{position:absolute;inset:0;opacity:.05;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233a51a0' stroke-width='1.4'%3E%3Ccircle cx='60' cy='60' r='8'/%3E%3Ccircle cx='60' cy='60' r='20' stroke-dasharray='2 4'/%3E%3Cpath d='M60 40c6 0 6-10 0-10s-6 10 0 10zM60 80c6 0 6 10 0 10s-6-10 0-10zM40 60c0 6-10 6-10 0s10-6 0 0zM80 60c0 6 10 6 10 0s-10-6 0 0z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:130px;}
+
+/* ===== NAV ===== */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 40px;transition:.4s;mix-blend-mode:normal;}
+header.nav.scrolled{background:rgba(58,81,160,.96);backdrop-filter:blur(10px);padding:12px 40px;box-shadow:0 8px 30px rgba(27,37,71,.18)}
+.brand{font-family:'Fraunces',serif;font-size:1.5rem;color:#fff;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.brand small{font-family:'Hanken Grotesk';font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;opacity:.7;font-weight:600}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{color:#fff;text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.04em;opacity:.85;transition:.25s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--gold);color:#fff!important;padding:11px 24px;border-radius:40px;font-weight:600;opacity:1!important;transition:.3s}
+.nav-cta:hover{background:#fff;color:var(--blue)!important;transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;background:var(--blue);color:#fff;position:relative;
+  display:flex;align-items:center;overflow:hidden}
+.hero .motif{opacity:.08}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(90px);z-index:0}
+.hero-glow.g1{width:520px;height:520px;background:radial-gradient(circle,#5a72c4,transparent 70%);top:-160px;right:-120px;opacity:.55}
+.hero-glow.g2{width:420px;height:420px;background:radial-gradient(circle,#c9ab63,transparent 70%);bottom:-150px;left:-100px;opacity:.25}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;width:100%}
+.hero h1{font-size:clamp(3.2rem,7vw,6.4rem);font-weight:300;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero h1 b{font-weight:600}
+.hero .lead{font-size:1.15rem;max-width:480px;margin:28px 0 36px;color:#dfe3f2;font-weight:300}
+.hero-tags{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px}
+.tag{border:1px solid rgba(255,255,255,.3);padding:7px 18px;border-radius:30px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:50px;
+  font-family:'Hanken Grotesk';font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;border:none;transition:.3s;letter-spacing:.02em}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#fff;color:var(--blue);transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.25)}
+.btn-line{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn-line:hover{background:#fff;color:var(--blue)}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.hero-card{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.hero-card img{width:100%;height:100%;object-fit:cover;object-position:64% center}
+.hero-card .cap{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(27,37,71,.85));font-size:.9rem}
+.hero-card .cap b{font-family:'Fraunces';font-weight:500;font-size:1.2rem;display:block;margin-bottom:4px}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(34px);transition:.9s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== SECTION base ===== */
+section{position:relative;padding:120px 0}
+.section-head{max-width:720px;margin-bottom:64px}
+.section-head h2{font-size:clamp(2.4rem,5vw,4rem);font-weight:300}
+.section-head h2 b{font-weight:600}
+.section-head .num{font-family:'Fraunces';color:var(--gold);font-size:clamp(2.4rem,5vw,4rem);margin-right:16px;font-style:italic}
+.section-head p{margin-top:22px;font-size:1.08rem;color:#4a5478;max-width:600px}
+
+/* ===== CHI SIAMO ===== */
+.about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-text p{margin-bottom:22px;font-size:1.05rem;color:#3a4366}
+.about-text strong{color:var(--blue);font-weight:600}
+.about-text em{font-style:italic;color:var(--gold)}
+.about-visual{position:relative}
+.about-visual img{border-radius:20px;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 30px 60px var(--shadow)}
+.float-badge{position:absolute;bottom:-26px;left:-26px;background:var(--blue);color:#fff;border-radius:18px;padding:24px 28px;box-shadow:0 18px 40px rgba(27,37,71,.3);max-width:230px}
+.float-badge b{font-family:'Fraunces';font-size:2.4rem;display:block;line-height:1}
+.float-badge span{font-size:.82rem;opacity:.85}
+
+/* ===== FORMULE ===== */
+.formule{background:var(--blue);color:#fff}
+.formule .section-head .num,.formule .eyebrow{color:var(--gold-soft)}
+.formule .section-head p{color:#cfd6ee}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.f-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:34px 28px;transition:.4s;position:relative;overflow:hidden}
+.f-card:hover{background:rgba(255,255,255,.12);transform:translateY(-8px)}
+.f-card .ico{width:48px;height:48px;border-radius:12px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:1.3rem}
+.f-card h3{font-size:1.5rem;font-weight:500;margin-bottom:14px}
+.f-card p{font-size:.95rem;color:#d4daee;line-height:1.6}
+.f-card .pick{margin-top:22px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:none;background:none;font-family:'Hanken Grotesk'}
+.f-card .pick:hover{color:#fff}
+
+/* ===== MENU ===== */
+.menus{background:var(--cream-soft)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.m-card{background:var(--paper);border-radius:22px;padding:40px 34px;box-shadow:0 16px 44px var(--shadow);border-top:5px solid var(--gold);transition:.4s;display:flex;flex-direction:column}
+.m-card:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(27,37,71,.2)}
+.m-card .tier{font-family:'Fraunces';color:var(--gold);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.m-card h3{font-size:2rem;font-weight:500;color:var(--blue);margin-bottom:22px}
+.m-card ul{list-style:none;flex:1}
+.m-card li{padding:11px 0 11px 26px;position:relative;font-size:.94rem;color:#3a4366;border-bottom:1px dashed #ddd6c5}
+.m-card li:last-child{border-bottom:none}
+.m-card li::before{content:'';position:absolute;left:4px;top:19px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.m-card li b{color:var(--blue);font-weight:600}
+.m-card .price{margin-top:26px;font-family:'Fraunces';font-size:1.1rem;color:var(--blue);font-style:italic}
+.m-card .pick{margin-top:18px;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:40px;font-weight:600;cursor:pointer;font-family:'Hanken Grotesk';transition:.3s}
+.m-card .pick:hover{background:var(--gold)}
+
+/* ===== SERVIZI ===== */
+.servizi{background:var(--blue-ink);color:#fff}
+.servizi .eyebrow{color:var(--gold-soft)}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.s-item{display:flex;align-items:center;gap:16px;padding:24px;background:rgba(255,255,255,.05);border-radius:16px;border:1px solid rgba(255,255,255,.08);transition:.3s}
+.s-item:hover{background:rgba(255,255,255,.1);transform:translateX(4px)}
+.s-item .si{font-size:1.6rem;width:46px;text-align:center}
+.s-item .st b{display:block;font-weight:600;font-size:1.02rem}
+.s-item .st span{font-size:.85rem;color:#b9c0dc}
+.serv-note{margin-top:34px;padding:28px 34px;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0 14px 14px 0}
+.serv-note b{font-family:'Fraunces';font-size:1.25rem;font-weight:500;color:var(--gold-soft)}
+
+/* ===== PROCESSO ===== */
+.process{background:var(--cream)}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;margin-top:30px}
+.steps::before{content:'';position:absolute;top:28px;left:6%;right:6%;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue))}
+.step{text-align:center;position:relative;padding:0 10px}
+.step .dot{width:56px;height:56px;border-radius:50%;background:var(--paper);border:2px solid var(--gold);color:var(--blue);font-family:'Fraunces';font-size:1.3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:2;transition:.3s}
+.step:hover .dot{background:var(--blue);color:#fff;border-color:var(--blue);transform:scale(1.1)}
+.step h4{font-size:1.15rem;font-weight:600;color:var(--blue);margin-bottom:8px}
+.step p{font-size:.84rem;color:#4a5478}
+
+/* ===== REVIEWS ===== */
+.reviews{background:var(--blue);color:#fff;overflow:hidden}
+.reviews .eyebrow{color:var(--gold-soft)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.rev{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:34px;position:relative}
+.rev .q{font-family:'Fraunces';font-size:3rem;color:var(--gold);line-height:1;opacity:.6}
+.rev p{font-size:1rem;color:#e2e6f5;font-style:italic;margin:8px 0 22px}
+.rev .who{display:flex;align-items:center;gap:12px}
+.rev .av{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--blue-ink);font-family:'Fraunces';font-size:1.3rem;display:flex;align-items:center;justify-content:center;font-weight:600}
+.rev .who b{display:block;font-weight:600}
+.rev .who span{font-size:.8rem;color:#b9c0dc}
+.stars{color:var(--gold-soft);letter-spacing:3px;font-size:.9rem;margin-top:4px}
+
+/* ===== FORM ===== */
+.booking{background:var(--cream-soft);position:relative}
+.book-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:56px;align-items:start}
+.book-side h2{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300;margin-bottom:10px}
+.book-side h2 b{font-weight:600;color:var(--blue)}
+.book-side p{color:#4a5478;margin:18px 0 28px;font-size:1.05rem}
+.book-side .contacts{margin-top:36px;display:flex;flex-direction:column;gap:20px}
+.book-side .ci{display:flex;gap:14px;align-items:flex-start}
+.book-side .ci .ico{width:44px;height:44px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.book-side .ci small{display:block;text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;color:var(--gold);font-weight:700;margin-bottom:2px}
+.book-side .ci a,.book-side .ci span{font-weight:500;color:var(--blue-ink);text-decoration:none}
+
+form.req{background:var(--paper);border-radius:26px;padding:44px;box-shadow:0 24px 60px var(--shadow)}
+.fg{margin-bottom:22px}
+.fg.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:9px}
+label .opt{color:#9aa0b8;font-weight:500;text-transform:none;letter-spacing:0;font-size:.78rem}
+input,select,textarea{width:100%;padding:14px 16px;border:1.5px solid #dcd6c6;border-radius:12px;font-family:'Hanken Grotesk';font-size:.95rem;color:var(--blue-ink);background:#fff;transition:.25s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(58,81,160,.1)}
+textarea{resize:vertical;min-height:96px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chip label{display:inline-block;margin:0;padding:10px 18px;border:1.5px solid #dcd6c6;border-radius:30px;font-size:.82rem;text-transform:none;letter-spacing:0;font-weight:500;color:#4a5478;cursor:pointer;transition:.25s}
+.chip input:checked + label{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip.gold input:checked + label{background:var(--gold);border-color:var(--gold)}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:6px 0 24px}
+.consent input{width:auto;margin-top:4px;flex-shrink:0}
+.consent label{margin:0;text-transform:none;letter-spacing:0;font-weight:400;font-size:.85rem;color:#4a5478}
+.consent a{color:var(--blue);font-weight:600}
+.submit{width:100%;background:var(--blue);color:#fff;padding:18px;border:none;border-radius:50px;font-family:'Hanken Grotesk';font-weight:700;font-size:1rem;cursor:pointer;transition:.3s;letter-spacing:.02em}
+.submit:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 16px 40px rgba(58,81,160,.3)}
+.form-note{text-align:center;font-size:.78rem;color:#9aa0b8;margin-top:14px}
+.confirm{display:none;background:#fff;border:2px solid var(--gold);border-radius:26px;padding:50px;text-align:center;box-shadow:0 24px 60px var(--shadow)}
+.confirm.show{display:block;animation:pop .5s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.confirm .ck{width:74px;height:74px;border-radius:50%;background:var(--gold);color:#fff;font-size:2.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.confirm h3{font-size:1.9rem;color:var(--blue);margin-bottom:14px}
+.confirm p{color:#4a5478;margin-bottom:24px}
+.confirm .summary{text-align:left;background:var(--cream-soft);border-radius:14px;padding:22px 26px;margin-bottom:26px;font-size:.9rem}
+.confirm .summary div{padding:6px 0;border-bottom:1px dashed #ddd6c5;display:flex;justify-content:space-between;gap:20px}
+.confirm .summary div:last-child{border:none}
+.confirm .summary b{color:var(--blue)}
+.confirm .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ===== FOOTER ===== */
+footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relative}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-grid .brand{font-size:2.4rem;margin-bottom:14px}
+.foot-grid p{color:#aab1d0;font-size:.92rem;max-width:300px}
+.foot-grid h5{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--gold);margin-bottom:18px;font-weight:700}
+.foot-grid ul{list-style:none}
+.foot-grid ul li{margin-bottom:11px}
+.foot-grid ul a{color:#cdd2e6;text-decoration:none;font-size:.92rem;transition:.2s}
+.foot-grid ul a:hover{color:#fff}
+.socials{display:flex;gap:12px;margin-top:18px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.8rem;text-decoration:none;transition:.3s;letter-spacing:.05em}
+.socials a:hover{background:var(--gold);border-color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;color:#8b92b4}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .form-grid{grid-template-columns:1fr 1fr}
+  .menu-grid{grid-template-columns:1fr}
+  .serv-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(3,1fr);gap:36px 0}
+  .steps::before{display:none}
+  .book-grid{grid-template-columns:1fr;gap:40px}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{max-width:380px}
+  .rev-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .wrap{padding:0 20px}
+  section{padding:80px 0}
+  .nav-links{display:none}
+  .burger{display:flex}
+  header.nav{padding:14px 20px}
+  .form-grid,.serv-grid,.about-grid,.foot-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .fg.row{grid-template-columns:1fr}
+  form.req,.confirm{padding:28px}
+  .float-badge{left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="brand">peperì <small>Business</small></a>
+  <nav class="nav-links">
+    <a href="#about">Chi siamo</a>
+    <a href="#formule">Formule</a>
+    <a href="#menu">Menù</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#processo">Come lavoriamo</a>
+    <a href="#prenota" class="nav-cta">Richiedi preventivo</a>
+  </nav>
+  <div class="burger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="motif"></div>
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Dalmine Ristorazione S.r.l. · 2026</span>
+      <h1>L'azienda ha un <b>meeting</b>?<br><em>Peperì</em> è la soluzione.</h1>
+      <p class="lead">Dai piccoli meeting alle grandi conferenze: soluzioni gastronomiche sartoriali che uniscono l'essenzialità del lavoro bergamasco al gusto caldo della tradizione mediterranea.</p>
+      <div class="hero-tags">
+        <span class="tag">Ristorante</span>
+        <span class="tag">Pizzeria</span>
+        <span class="tag">Cocktail Bar</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#prenota" class="btn btn-gold">Richiedi un preventivo →</a>
+        <a href="#formule" class="btn btn-line">Scopri le formule</a>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <img src="images/peperi-sala-servizio.jpg" alt="Convivialità a tavola">
+      <div class="cap"><b>Convivialità Mediterranea</b>Uscire dagli spazi dell'ufficio e vivere momenti fuori dall'impresa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">01 — Chi siamo</span>
+        <h2 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:300;margin-bottom:28px">Due mondi che <b style="font-weight:600;color:var(--blue)">dialogano</b></h2>
+        <p>Crediamo profondamente nell'<strong>impatto positivo che la convivialità mediterranea ha sul nostro benessere, sulla creatività e sulla produttività</strong>. Per questo non ci limitiamo a preparare piatti: progettiamo soluzioni gastronomiche sartoriali, pensate per chi vuole uscire dagli spazi dell'ufficio.</p>
+        <p>Ciò che ci rende unici è la nostra capacità di far dialogare due mondi: <em>il lavoro bergamasco e il gusto della tradizione mediterranea.</em></p>
+        <p>Abbiamo saputo unire l'essenzialità del Nord con la narrazione calda e generosa del Mediterraneo, creando un approccio alla ristorazione che è, prima di tutto, un gesto di libertà.</p>
+      </div>
+      <div class="about-visual reveal">
+        <img src="images/peperi-sala-verde.jpg" alt="Locale Peperì">
+        <div class="float-badge">
+          <b>2</b>
+          <span>fratelli, Max &amp; Roby, cresciuti a "pane e ristorazione" con la passione mediterranea.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULE -->
+<section class="formule" id="formule">
+  <div class="motif"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 — Disegna il tuo evento</span>
+      <h2><span class="num">03</span>Le nostre <b>formule</b></h2>
+      <p>Un'intera squadra a tua disposizione per costruire l'esperienza su misura per la tua azienda.</p>
+    </div>
+    <div class="form-grid">
+      <div class="f-card reveal">
+        <div class="ico">☕</div>
+        <h3>Coffee Break</h3>
+        <p>Nella nostra veranda puoi ospitare il tuo team per il meeting e aggiungere un coffee break dedicato.</p>
+        <button class="pick" data-formula="Coffee Break">Seleziona →</button>
+      </div>
+      <div class="f-card reveal">
+        <div class="ico">🥗</div>
+        <h3>Light Lunch</h3>
+        <p>Crea il tuo meeting in veranda durante la mattinata e offri ai tuoi clienti un pranzo leggero per tornare freschi in ufficio.</p>
+        <button class="pick" data-formula="Light Lunch">Seleziona →</button>
+      </div>
+      <div class="f-card reveal">
+        <div class="ico">🍝</div>
+        <h3>Private Lunch</h3>
+        <p>Il pranzo perfetto per i tuoi dipendenti: dopo un meeting, in azienda o come premio per un mese importante.</p>
+        <button class="pick" data-formula="Private Lunch">Seleziona →</button>
+      </div>
+      <div class="f-card reveal">
+        <div class="ico">🍷</div>
+        <h3>Private Dinner</h3>
+        <p>Incontra clienti o dipendenti in un'area riservata del locale. Disponibile a pranzo o a cena, anche l'intera struttura di Peperì.</p>
+        <button class="pick" data-formula="Private Dinner">Seleziona →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menus" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Scegli il tuo gusto</span>
+      <h2><span class="num">05</span>Scegli il tuo <b>menù</b></h2>
+      <p>Tre proposte calibrate per ogni occasione, dal coffee break informale alla cena di rappresentanza.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-card reveal">
+        <div class="tier">Essenziale</div>
+        <h3>Menù 1</h3>
+        <ul>
+          <li><b>Mini Focacce Peperì</b> — sale grosso, rosmarino, pomodorini e origano</li>
+          <li><b>I "Morsicotti"</b> — mini panini di pane signature con Crudo di Parma e squacquerone</li>
+          <li>Cotto di alta qualità e provola affumicata</li>
+          <li><b>Pizza in pala</b> (Base Peperì) — Margherita classica e Bianca con patate e rosmarino</li>
+          <li>Succhi di frutta classici (Arancia, Ananas)</li>
+        </ul>
+        <div class="price">XX € a persona</div>
+        <button class="pick" data-menu="Menù 1">Scegli questo menù</button>
+      </div>
+      <div class="m-card reveal">
+        <div class="tier">Gourmet</div>
+        <h3>Menù 2</h3>
+        <ul>
+          <li><b>Focacce Gourmet</b> — Mortadella Bologna, granella di pistacchio e stracciatella</li>
+          <li><b>Mini Burger "Special Edition"</b> — burger di polpo e maionese al lime</li>
+          <li><b>Pizzette Gourmet</b> (Base Peperì) con ingredienti di stagione</li>
+          <li>Mini Quiche salate con verdure di stagione</li>
+          <li>Finger di "Pizzicotti" — impasto pizza fritto e zuccherato</li>
+          <li>Succhi, Caffè espresso, Tè freddo artigianale, 1 calice di vino bianco del territorio</li>
+        </ul>
+        <div class="price">XX € a persona</div>
+        <button class="pick" data-menu="Menù 2">Scegli questo menù</button>
+      </div>
+      <div class="m-card reveal">
+        <div class="tier">Executive</div>
+        <h3>Menù 3</h3>
+        <ul>
+          <li><b>Sandwich Executive</b> — mini sandwich con tartare di manzo (filetto), sale Maldon e scaglie di tartufo</li>
+          <li><b>Pala Peperì Oro</b> — gambero rosso a crudo, stracciatella e zeste di limone</li>
+          <li>Focaccia ai 7 cereali con salmone marinato alla barbabietola e crème fraîche</li>
+          <li>Selezione di Formaggi e Salumi Premium con pane a lievitazione naturale</li>
+          <li>Mignon dolci Peperì — profiterol al pistacchio e mini millefoglie ai lamponi</li>
+          <li>Prosecco DOCG o Franciacorta (2 calici), Caffè, Acqua minerale, Succo di frutta fresca</li>
+        </ul>
+        <div class="price">XX € a persona</div>
+        <button class="pick" data-menu="Menù 3">Scegli questo menù</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="servizi" id="servizi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Tutto incluso</span>
+      <h2 style="color:#fff">Servizi <b style="color:var(--gold-soft)">aggiuntivi</b></h2>
+      <p style="color:#cfd6ee">Spunta ciò che ti serve nel form: lo predisponiamo noi.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="s-item reveal"><div class="si">🎤</div><div class="st"><b>Microfoni</b><span>per la presentazione</span></div></div>
+      <div class="s-item reveal"><div class="si">📋</div><div class="st"><b>Lavagna bianca</b><span>con pennarelli</span></div></div>
+      <div class="s-item reveal"><div class="si">📺</div><div class="st"><b>TV / Schermo</b><span>per presentazioni</span></div></div>
+      <div class="s-item reveal"><div class="si">📶</div><div class="st"><b>Wi-Fi dedicato</b><span>per l'evento</span></div></div>
+      <div class="s-item reveal"><div class="si">🔌</div><div class="st"><b>Prese e multiprese</b><span>per laptop</span></div></div>
+      <div class="s-item reveal"><div class="si">🤝</div><div class="st"><b>Area accoglienza</b><span>ospiti</span></div></div>
+    </div>
+    <div class="serv-note reveal">
+      <b>📸 Fotografo / video evento</b> — su richiesta. Vuoi pubblicizzare i tuoi meeting sui canali social aziendali? Questa è la soluzione corretta per la tua esigenza.
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="process" id="processo">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;margin:0 auto 50px">
+      <span class="eyebrow">06 — Come lavoriamo</span>
+      <h2 style="font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300">Dal primo contatto <b style="font-weight:600;color:var(--blue)">al post-evento</b></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="dot">1</div><h4>Incontro</h4><p>Comprensione delle esigenze del cliente via mail, call o incontro.</p></div>
+      <div class="step reveal"><div class="dot">2</div><h4>Creazione</h4><p>Preparazione dell'evento e definizione dei dettagli.</p></div>
+      <div class="step reveal"><div class="dot">3</div><h4>Realizzazione</h4><p>Layout and style selection dell'allestimento.</p></div>
+      <div class="step reveal"><div class="dot">4</div><h4>Preparazione</h4><p>Preparazione finale all'interno del budget concordato.</p></div>
+      <div class="step reveal"><div class="dot">5</div><h4>Finalizzazione</h4><p>Presentazione del menù e delle richieste per l'evento.</p></div>
+      <div class="step reveal"><div class="dot">6</div><h4>Servizio</h4><p>Servizio e gestione richieste post-evento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="motif"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="section-head reveal" style="margin-bottom:40px">
+      <span class="eyebrow">Recensioni Google Maps</span>
+      <h2 style="color:#fff">Parlano <b style="color:var(--gold-soft)">di noi</b></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal">
+        <div class="q">"</div>
+        <p>Uno dei migliori ristoranti della zona, soprattutto per le pietanze tipiche del sud Italia. L'ambiente è molto grande e curato, il personale gentilissimo e il servizio ottimo.</p>
+        <div class="who"><div class="av">M</div><div><b>Manuela Gritti</b><div class="stars">★★★★★</div></div></div>
+      </div>
+      <div class="rev reveal">
+        <div class="q">"</div>
+        <p>Ambiente stupendo e personale gentilissimo, il cibo molto buono, le fritture ottime. Ci tornerò molto volentieri! Per me era stata la prima volta.</p>
+        <div class="who"><div class="av" style="background:var(--gold-soft)">O</div><div><b>Omar Fapanni</b><span>Ristoratore</span><div class="stars">★★★★★</div></div></div>
+      </div>
+      <div class="rev reveal">
+        <div class="q">"</div>
+        <p>La location è davvero bella e caratteristica, il personale efficiente e molto gentile, il cibo buono specialmente gli antipasti e i dolci, ottimi anche i cocktail.</p>
+        <div class="who"><div class="av">J</div><div><b>Jenny Pasta</b><div class="stars">★★★★★</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking" id="prenota">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="book-side reveal">
+        <span class="eyebrow">07 — Contattaci</span>
+        <h2>Richiedi il tuo <b>preventivo su misura</b></h2>
+        <p>Compila il modulo con la formula, il numero di partecipanti, il menù, i servizi e il budget: ti ricontattiamo con una proposta personalizzata. A pochi km dall'aeroporto e dalle stazioni di Bergamo e Verdello.</p>
+        <div class="contacts">
+          <div class="ci"><div class="ico">📞</div><div><small>Telefono</small><a href="tel:+39035040190">+39 035 04 01 940</a></div></div>
+          <div class="ci"><div class="ico">✉️</div><div><small>Email</small><a href="mailto:info@peperi.it">info@peperi.it</a></div></div>
+          <div class="ci"><div class="ico">📍</div><div><small>Indirizzo</small><span>Via Agostino Richelmi, 1 — 24044 Dalmine (BG)</span></div></div>
+          <div class="ci"><div class="ico">🌐</div><div><small>Sito web</small><a href="https://www.peperi.it/" target="_blank">www.peperi.it</a></div></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="req" id="reqForm" name="preventivo" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="preventivo">
+          <input type="hidden" name="servizi" id="serviziHidden">
+          <p style="display:none"><label>Non compilare: <input name="bot-field"></label></p>
+          <div class="fg row">
+            <div><label>Azienda</label><input type="text" name="company" id="company" placeholder="Nome azienda" required></div>
+            <div><label>Referente</label><input type="text" name="name" id="name" placeholder="Nome e cognome" required></div>
+          </div>
+          <div class="fg row">
+            <div><label>Email</label><input type="email" name="email" id="email" placeholder="nome@azienda.it" required></div>
+            <div><label>Telefono</label><input type="tel" name="phone" id="phone" placeholder="+39 ..." required></div>
+          </div>
+
+          <div class="fg">
+            <label>Formula desiderata</label>
+            <div class="chips" id="formulaChips">
+              <span class="chip"><input type="radio" name="formula" id="f1" value="Coffee Break"><label for="f1">☕ Coffee Break</label></span>
+              <span class="chip"><input type="radio" name="formula" id="f2" value="Light Lunch"><label for="f2">🥗 Light Lunch</label></span>
+              <span class="chip"><input type="radio" name="formula" id="f3" value="Private Lunch"><label for="f3">🍝 Private Lunch</label></span>
+              <span class="chip"><input type="radio" name="formula" id="f4" value="Private Dinner"><label for="f4">🍷 Private Dinner</label></span>
+            </div>
+          </div>
+
+          <div class="fg row">
+            <div><label>N° partecipanti</label><input type="number" name="guests" id="guests" min="1" placeholder="Es. 25" required></div>
+            <div><label>Data preferita</label><input type="date" name="date" id="date" required></div>
+          </div>
+          <div class="fg row">
+            <div>
+              <label>Fascia oraria</label>
+              <select name="slot" id="slot">
+                <option value="Da definire">Da definire</option>
+                <option value="Mattina (coffee break)">Mattina (coffee break)</option>
+                <option value="Pranzo">Pranzo</option>
+                <option value="Cena">Cena</option>
+              </select>
+            </div>
+            <div>
+              <label>Menù preferito</label>
+              <select name="menu" id="menuSel">
+                <option value="Da definire con lo staff">Da definire con lo staff</option>
+                <option value="Menù 1 — Essenziale">Menù 1 — Essenziale</option>
+                <option value="Menù 2 — Gourmet">Menù 2 — Gourmet</option>
+                <option value="Menù 3 — Executive">Menù 3 — Executive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Servizi aggiuntivi <span class="opt">(seleziona quelli necessari)</span></label>
+            <div class="chips">
+              <span class="chip gold"><input type="checkbox" name="serv" id="s1" value="Microfoni"><label for="s1">🎤 Microfoni</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s2" value="Lavagna bianca"><label for="s2">📋 Lavagna</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s3" value="TV / Schermo"><label for="s3">📺 TV / Schermo</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s4" value="Wi-Fi dedicato"><label for="s4">📶 Wi-Fi</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s5" value="Prese / multiprese"><label for="s5">🔌 Prese</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s6" value="Area accoglienza"><label for="s6">🤝 Accoglienza</label></span>
+              <span class="chip gold"><input type="checkbox" name="serv" id="s7" value="Fotografo / video"><label for="s7">📸 Foto / video</label></span>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Budget indicativo</label>
+            <select name="budget" id="budget">
+              <option value="Da concordare">Da concordare</option>
+              <option value="Fino a 25 € a persona">Fino a 25 € a persona</option>
+              <option value="25–40 € a persona">25–40 € a persona</option>
+              <option value="40–60 € a persona">40–60 € a persona</option>
+              <option value="Oltre 60 € a persona">Oltre 60 € a persona</option>
+              <option value="Budget totale evento (indico nelle note)">Budget totale evento (indico nelle note)</option>
+            </select>
+          </div>
+
+          <div class="fg">
+            <label>Note e richieste <span class="opt">(facoltativo)</span></label>
+            <textarea name="notes" id="notes" placeholder="Intolleranze, esigenze di layout, budget complessivo, orari, ecc."></textarea>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="privacy" required>
+            <label for="privacy">Ho letto e accetto la <a href="https://www.peperi.it/privacy" target="_blank">Privacy Policy</a> e acconsento al trattamento dei dati per essere ricontattato.</label>
+          </div>
+
+          <button type="submit" class="submit">Invia richiesta di preventivo →</button>
+          <div id="formStatus" style="display:none;margin-top:14px;padding:12px 16px;border-radius:12px;font-size:.9rem;font-weight:500;text-align:center"></div>
+          <p class="form-note">La richiesta viene inviata al ristorante. Risposta tipica entro 24h lavorative.</p>
+        </form>
+
+        <div class="confirm" id="confirm">
+          <div class="ck">✓</div>
+          <h3>Richiesta inviata!</h3>
+          <p>Grazie! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto con una proposta su misura. Qui sotto trovi il riepilogo.</p>
+          <div class="summary" id="summary"></div>
+          <div class="actions">
+            <a href="#" class="btn btn-gold" id="mailBtn">✉️ Mandami un recap</a>
+            <button class="btn btn-line" style="color:var(--blue);border-color:var(--blue)" onclick="resetForm()">Invia un'altra richiesta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="motif" style="opacity:.04"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="color:#fff">peperì</div>
+        <p>Convivialità Mediterranea. Dalmine Ristorazione S.r.l. — Ristorante, Pizzeria &amp; Cocktail Bar per i tuoi eventi business.</p>
+        <div class="socials">
+          <a href="https://facebook.com/peperi.it" target="_blank">FB</a>
+          <a href="https://instagram.com/peperi.it" target="_blank">IG</a>
+          <a href="https://www.peperi.it/" target="_blank">WEB</a>
+        </div>
+      </div>
+      <div>
+        <h5>Esplora</h5>
+        <ul>
+          <li><a href="#about">Chi siamo</a></li>
+          <li><a href="#formule">Le formule</a></li>
+          <li><a href="#menu">I menù</a></li>
+          <li><a href="#servizi">Servizi aggiuntivi</a></li>
+          <li><a href="#prenota">Richiedi preventivo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contatti</h5>
+        <ul>
+          <li><a href="tel:+39035040190">+39 035 04 01 940</a></li>
+          <li><a href="mailto:info@peperi.it">info@peperi.it</a></li>
+          <li>Via Agostino Richelmi, 1</li>
+          <li>24044 Dalmine (BG)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Dalmine Ristorazione S.r.l. — P.IVA 04720880162</span>
+      <span>Tutti i diritti riservati · <a href="https://www.peperi.it/privacy" target="_blank" style="color:#aab1d0">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav scroll state
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*80)+'ms';io.observe(el)});
+
+// quick-pick from formula/menu cards -> scroll to form + preselect
+document.querySelectorAll('.f-card .pick').forEach(b=>b.addEventListener('click',()=>{
+  const v=b.dataset.formula;
+  document.querySelectorAll('input[name=formula]').forEach(r=>{if(r.value===v)r.checked=true});
+  document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
+}));
+document.querySelectorAll('.m-card .pick').forEach(b=>b.addEventListener('click',()=>{
+  const v=b.dataset.menu, sel=document.getElementById('menuSel');
+  [...sel.options].forEach(o=>{if(o.value.startsWith(v))sel.value=o.value});
+  document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
+}));
+
+// ============================================================
+//  CONFIGURAZIONE INVIO FORM
+//  - Lascia GSHEET_ENDPOINT vuoto  -> usa Netlify Forms (dashboard Netlify + notifiche email)
+//  - Incolla l'URL della Web App   -> i dati vanno direttamente nel tuo Google Sheet
+// ============================================================
+const GSHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyWEYRZBJqfnBFlerASmGy4zn_S_48jN4hgbmKNm6fYsH_IaTTw1MGhKAvWnHBBxNtP/exec'; // Web App Google Apps Script
+const USE_GSHEET = GSHEET_ENDPOINT.trim().length > 0;
+
+const form=document.getElementById('reqForm');
+const confirmBox=document.getElementById('confirm');
+const statusEl=document.getElementById('formStatus');
+function val(id){return document.getElementById(id).value.trim()}
+function showStatus(msg,type){
+  statusEl.style.display='block';
+  statusEl.textContent=msg;
+  statusEl.style.background = type==='error' ? '#fdecec' : '#eef3ec';
+  statusEl.style.color      = type==='error' ? '#b3261e' : '#2f6b34';
+}
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+
+  // 1) validazione gestita in JS (il submit parte sempre, niente blocchi silenziosi)
+  const checks=[
+    ['company','Inserisci il nome dell\u2019azienda.'],
+    ['name','Inserisci il nome del referente.'],
+    ['email','Inserisci un indirizzo email.'],
+    ['phone','Inserisci un numero di telefono.'],
+    ['guests','Indica il numero di partecipanti.'],
+    ['date','Scegli una data preferita.']
+  ];
+  for(const [id,msg] of checks){
+    const el=document.getElementById(id);
+    if(!el.value.trim()){ el.focus(); el.scrollIntoView({behavior:'smooth',block:'center'}); showStatus(msg,'error'); return; }
+  }
+  const em=val('email');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ document.getElementById('email').focus(); showStatus('Controlla l\u2019indirizzo email: non sembra valido.','error'); return; }
+  if(!document.getElementById('privacy').checked){
+    document.getElementById('privacy').scrollIntoView({behavior:'smooth',block:'center'});
+    showStatus('Per inviare devi accettare la Privacy Policy (spunta in fondo al modulo).','error'); return;
+  }
+
+  const formula=(document.querySelector('input[name=formula]:checked')||{}).value||'Da definire';
+  const servs=[...document.querySelectorAll('input[name=serv]:checked')].map(c=>c.value);
+  const servStr=servs.length?servs.join(', '):'Nessuno';
+  document.getElementById('serviziHidden').value=servStr;
+
+  const data={
+    'form-name':'preventivo',
+    company:val('company'), name:val('name'), email:val('email'), phone:val('phone'),
+    formula:formula, guests:val('guests'), date:val('date'), slot:val('slot'),
+    menu:document.getElementById('menuSel').value, servizi:servStr, budget:val('budget'), notes:val('notes')||'—'
+  };
+
+  const labels={company:'Azienda',name:'Referente',email:'Email',phone:'Telefono',formula:'Formula',
+    guests:'Partecipanti',date:'Data',slot:'Fascia oraria',menu:'Menù',servizi:'Servizi',budget:'Budget',notes:'Note'};
+  document.getElementById('summary').innerHTML=Object.keys(labels)
+    .map(k=>`<div><span>${labels[k]}</span><b>${data[k]||'—'}</b></div>`).join('');
+
+  // "Mandami un recap": email indirizzata a CHI ha compilato (campo email del form)
+  const recapLines=Object.keys(labels).map(k=>`${labels[k]}: ${data[k]||'—'}`).join('\n');
+  const recapText=`Ciao ${data.name||''},\n\necco il recap della richiesta che hai inviato a Peperì Business:\n\n${recapLines}\n\nTi ricontatteremo a breve con una proposta su misura.\n— Peperì · Convivialità Mediterranea`;
+  document.getElementById('mailBtn').href=`mailto:${data.email}?subject=${encodeURIComponent('Recap della tua richiesta — Peperì Business')}&body=${encodeURIComponent(recapText)}`;
+
+  // 2) invio con stato visibile + timeout di sicurezza (la risposta no-cors non è leggibile)
+  const btn=form.querySelector('.submit'); btn.disabled=true; btn.textContent='Invio in corso…';
+  showStatus('Invio in corso…','ok');
+
+  const endpoint = USE_GSHEET ? GSHEET_ENDPOINT : '/';
+  const opts = { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                 body:new URLSearchParams(data).toString() };
+  if(USE_GSHEET) opts.mode='no-cors';
+
+  const timeout = new Promise(r=>setTimeout(r,8000));
+  try{ await Promise.race([fetch(endpoint,opts), timeout]); }
+  catch(err){ /* in anteprima locale può fallire: mostriamo comunque la conferma + mailto */ }
+
+  btn.disabled=false; btn.textContent='Invia richiesta di preventivo →';
+  statusEl.style.display='none';
+  form.style.display='none';
+  confirmBox.classList.add('show');
+  confirmBox.scrollIntoView({behavior:'smooth',block:'center'});
+});
+function resetForm(){confirmBox.classList.remove('show');form.reset();statusEl.style.display='none';form.style.display='block';form.scrollIntoView({behavior:'smooth'})}
+// min date today
+document.getElementById('date').min=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>

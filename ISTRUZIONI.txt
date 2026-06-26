@@ -1,0 +1,46 @@
+PEPERÌ BUSINESS — Landing page B2B + Email automatiche
+========================================================
+File: index.html (pagina completa) + Code.gs (script Google Sheet con email automatiche)
+
+
+A) METTERE ONLINE SU NETLIFY
+----------------------------
+1. Vai su  https://app.netlify.com/drop
+2. Trascina  index.html  (o questo zip). Ottieni subito un link pubblico.
+3. Per aggiornare: stesso sito > tab Deploys > trascina di nuovo index.html.
+
+
+B) GOOGLE SHEET + EMAIL AUTOMATICHE (Code.gs)
+---------------------------------------------
+Cosa fa a ogni invio: salva la riga nel foglio "Richieste", manda il recap al
+cliente e una notifica al ristorante. Tutto interno a Google, senza Make.
+
+PRIMA INSTALLAZIONE
+1. Crea un Google Sheet (sheet.new).
+2. Estensioni > Apps Script. Cancella tutto e incolla Code.gs. Salva.
+3. In alto a destra:  Esegui il deployment > Nuovo deployment
+      Tipo = App web · Esegui come = Me · Accesso = Chiunque
+   Autorizza (accetta anche il permesso di invio email).
+4. Copia l'URL che finisce con /exec e incollalo in index.html:
+      const GSHEET_ENDPOINT = 'INCOLLA_QUI_URL';
+
+SE AGGIORNI IL CODICE (es. da versione senza email a questa con email)
+1. Incolla il nuovo Code.gs e salva.
+2. Ri-autorizza quando richiesto (nuovo permesso email).
+3. Esegui il deployment > GESTISCI deployment > (matita) Modifica >
+   Versione: "Nuova versione" > Esegui il deployment.
+   IMPORTANTE: senza "Nuova versione" l'URL continua a usare il codice vecchio.
+   L'URL /exec NON cambia: la landing page non va ritoccata.
+
+CONFIGURAZIONE EMAIL (in cima a Code.gs)
+   RISTORANTE_EMAIL  -> dove ricevere le notifiche interne
+   MITTENTE_NOME     -> nome mostrato come mittente
+   RISPONDI_A        -> indirizzo per le risposte
+   INVIA_RECAP_CLIENTE / INVIA_NOTIFICA_RISTORANTE -> true/false per attivarle
+
+MITTENTE: le email partono dall'account Google proprietario dello script.
+Per farle risultare da info@peperi.it, crea/deploya lo script con quell'account
+(richiede Google Workspace). Con un Gmail normale funziona ma il mittente sarà
+quell'indirizzo. Quota: ~100 email/giorno (Gmail) o ~1.500/giorno (Workspace).
+
+TEST ENDPOINT: apri l'URL /exec nel browser -> deve dire "endpoint attivo".
