@@ -135,6 +135,9 @@ section{position:relative;padding:120px 0}
 .m-card li:last-child{border-bottom:none}
 .m-card li::before{content:'';position:absolute;left:4px;top:19px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
 .m-card li b{color:var(--blue);font-weight:600}
+.m-card ul.sub{list-style:none;margin:9px 0 2px 0}
+.m-card ul.sub li{padding:6px 0 6px 22px;border-bottom:none;font-size:.9rem;color:#545d7e}
+.m-card ul.sub li::before{left:6px;top:15px;width:5px;height:5px;background:var(--gold);opacity:.55}
 .m-card .price{margin-top:26px;font-family:'Fraunces';font-size:1.1rem;color:var(--blue);font-style:italic}
 .m-card .pick{margin-top:18px;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:40px;font-weight:600;cursor:pointer;font-family:'Hanken Grotesk';transition:.3s}
 .m-card .pick:hover{background:var(--gold)}
@@ -312,7 +315,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <span class="eyebrow">Chi siamo</span>
         <h2 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:300;margin-bottom:28px">Due mondi che <b style="font-weight:600;color:var(--blue)">dialogano</b></h2>
         <p>Crediamo profondamente nell'<strong>impatto positivo che la convivialità mediterranea ha sul nostro benessere, sulla creatività e sulla produttività</strong>. Per questo non ci limitiamo a preparare piatti: progettiamo soluzioni gastronomiche sartoriali, pensate per chi vuole uscire dagli spazi dell'ufficio.</p>
-        <p>Ciò che ci rende unici è la nostra capacità di far dialogare due mondi: <em>il lavoro con i sapori del mediterranea.</em></p>
+        <p>Ciò che ci rende unici è la nostra capacità di far dialogare due mondi: <em>il lavoro con i sapori del Mediterraneo.</em></p>
         <p>Abbiamo unito la generosità del Sud, creando un approccio alla ristorazione che è prima di tutto un gesto di libertà.</p>
       </div>
       <div class="about-visual reveal">
@@ -377,11 +380,24 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <div class="tier">Itinerario</div>
         <h3>Mediterraneo</h3>
         <ul>
-          <li><b>I fritti di Peperì</b> — Sembrava un gateaux invece era una crocchè, rocher fritto, panelle</li>
-          <li><b>Degustazione del Forno</b></li>
-          <li>F’cazz’ e mortazz’</li>
-          <li>Busiate alla trapanese</li>
-          <li>Orecchiette alla mediterranea</li>
+          <li><b>I fritti di Peperì</b>
+            <ul class="sub">
+              <li>Sembrava un gateaux invece era una crocchè</li>
+              <li>Rocher fritto</li>
+              <li>Panelle</li>
+            </ul>
+          </li>
+          <li><b>Degustazione del Forno</b>
+            <ul class="sub">
+              <li>F’cazz’ e mortazz’</li>
+            </ul>
+          </li>
+          <li><b>Dalla Cucina</b>
+            <ul class="sub">
+              <li>Busiate alla trapanese</li>
+              <li>Orecchiette alla mediterranea</li>
+            </ul>
+          </li>
         </ul>
         <div class="price">30 € a persona</div>
         <button class="pick" data-menu="Mediterraneo">Scegli questo itinerario</button>
@@ -390,13 +406,19 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <div class="tier">Itinerario</div>
         <h3>Pizzerì Base</h3>
         <ul>
-          <li><b>I fritti di Peperì</b></li>
-          <li>Sembrava un gateaux invece era una crocchè</li>
-          <li>Il Rocher fritto</li>
-          <li>Le nostre panelle, da gustare con il limone</li>
-          <li><b>Degustazione del Forno</b></li>
-          <li>Le montanarine di Peperì</li>
-          <li>Una degustazione delle nostre pizze più iconiche e impasti selezionati</li>
+          <li><b>I fritti di Peperì</b>
+            <ul class="sub">
+              <li>Sembrava un gateaux invece era una crocchè</li>
+              <li>Il Rocher fritto</li>
+              <li>Le nostre panelle, da gustare con il limone</li>
+            </ul>
+          </li>
+          <li><b>Degustazione del Forno</b>
+            <ul class="sub">
+              <li>Le montanarine di Peperì</li>
+              <li>Una degustazione delle nostre pizze più iconiche e impasti selezionati</li>
+            </ul>
+          </li>
         </ul>
         <div class="price">36 € a persona</div>
         <button class="pick" data-menu="Pizzerì Base">Scegli questo itinerario</button>
@@ -406,9 +428,12 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <h3>Amici Miei</h3>
         <ul>
           <li><b>Il Tagliere del compare</b> — Capocollo, mortadella, pecorino, caciocavallo, nodini di fior di latte e per chiudere le nostre confetture fatte in casa</li>
-          <li><b>Degustazione del Forno</b></li>
-          <li>Neoclassica in Padellino</li>
-          <li>Orto Mediterraneo in Pala</li>
+          <li><b>Degustazione del Forno</b>
+            <ul class="sub">
+              <li>Neoclassica in Padellino</li>
+              <li>Orto Mediterraneo in Pala</li>
+            </ul>
+          </li>
           <li><b>Tagliata e Pazienza</b> — Carne tenera nappata con la nostra demiglace che profuma di pazienza. Servita con patate in doppia cottura</li>
         </ul>
         <div class="price">40 € a persona</div>
