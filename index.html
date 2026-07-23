@@ -177,6 +177,25 @@ section{position:relative;padding:120px 0}
 .rev .who span{font-size:.8rem;color:#b9c0dc}
 .stars{color:var(--gold-soft);letter-spacing:3px;font-size:.9rem;margin-top:4px}
 
+/* ===== BUSINESS LUNCH ===== */
+.blunch{background:var(--cream)}
+.bl-head{max-width:760px;margin:0 auto 56px;text-align:center}
+.bl-head h2{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:300}
+.bl-head h2 b{font-weight:600;color:var(--blue)}
+.bl-ask{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.35rem);color:var(--gold);margin-bottom:18px;line-height:1.4}
+.bl-head p.bl-lead{margin-top:22px;font-size:1.06rem;color:#4a5478}
+.bl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.bl-card{background:var(--paper);border-radius:22px;padding:38px 32px;box-shadow:0 16px 44px var(--shadow);transition:.4s;position:relative;overflow:hidden}
+.bl-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--blue))}
+.bl-card:hover{transform:translateY(-8px);box-shadow:0 28px 64px rgba(27,37,71,.2)}
+.bl-card .ico{width:54px;height:54px;border-radius:16px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:22px}
+.bl-card h3{font-size:1.45rem;font-weight:500;color:var(--blue);margin-bottom:14px}
+.bl-card p{font-size:.97rem;color:#4a5478;line-height:1.7}
+.bl-cta{text-align:center;margin-top:48px}
+.bl-cta .btn-gold{color:#fff}
+.bl-cta .btn-gold:hover{background:var(--blue);color:#fff}
+.bl-note{margin-top:16px;font-size:.86rem;color:#7b83a0}
+
 /* ===== FORM ===== */
 .booking{background:var(--cream-soft);position:relative}
 .book-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:56px;align-items:start}
@@ -242,6 +261,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   .form-grid{grid-template-columns:1fr 1fr}
   .menu-grid{grid-template-columns:1fr}
   .serv-grid{grid-template-columns:1fr 1fr}
+  .bl-cards{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:repeat(3,1fr);gap:36px 0}
   .steps::before{display:none}
   .book-grid{grid-template-columns:1fr;gap:40px}
@@ -255,7 +275,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   .nav-links{display:none}
   .burger{display:flex}
   header.nav{padding:14px 20px}
-  .form-grid,.serv-grid,.about-grid,.foot-grid{grid-template-columns:1fr}
+  .form-grid,.serv-grid,.about-grid,.foot-grid,.bl-cards{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .fg.row{grid-template-columns:1fr}
   form.req,.confirm{padding:28px}
@@ -272,6 +292,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
     <a href="#formule">Formule</a>
     <a href="#menu">Menù</a>
     <a href="#servizi">Servizi</a>
+    <a href="#businesslunch">Business Lunch</a>
     <a href="#processo">Come lavoriamo</a>
     <a href="#prenota" class="nav-cta">Richiedi preventivo</a>
   </nav>
@@ -511,6 +532,39 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   </div>
 </section>
 
+<!-- BUSINESS LUNCH -->
+<section class="blunch" id="businesslunch">
+  <div class="wrap">
+    <div class="bl-head reveal">
+      <span class="eyebrow" style="text-align:center">Business Lunch</span>
+      <p class="bl-ask">Cerchi un pranzo continuativo da dedicare ai tuoi dipendenti?<br>Ecco tutto quello che ti serve sapere.</p>
+      <h2>La pausa pranzo, <b>reinventata</b></h2>
+      <p class="bl-lead">Un nuovo modo di vivere la pausa pranzo: elegante, sorprendente, memorabile. Ogni dettaglio è pensato per offrirti molto più di un semplice business lunch.</p>
+    </div>
+    <div class="bl-cards">
+      <div class="bl-card reveal">
+        <div class="ico">✦</div>
+        <h3>Una pausa che sorprende</h3>
+        <p>Elegante, sorprendente, memorabile. Ogni dettaglio è studiato per trasformare un'ora di pausa in un momento che i tuoi collaboratori ricordano.</p>
+      </div>
+      <div class="bl-card reveal">
+        <div class="ico">☀</div>
+        <h3>Un ambiente luminoso</h3>
+        <p>Tra poltrone colorate, luce naturale e verde, la nostra sala ti accoglie per una pausa diversa: rilassante, delicata, rigenerante.</p>
+      </div>
+      <div class="bl-card reveal">
+        <div class="ico">🌿</div>
+        <h3>Leggerezza e qualità</h3>
+        <p>Piatti equilibrati per rientrare in ufficio leggeri, con materie prime selezionate: studiato per chi cerca gusto, qualità e tranquillità.</p>
+      </div>
+    </div>
+    <div class="bl-cta reveal">
+      <button class="btn btn-gold" id="blCta">Richiedi il Business Lunch →</button>
+      <p class="bl-note">Formule continuative su misura per la tua azienda: parliamone insieme.</p>
+    </div>
+  </div>
+</section>
+
 <!-- BOOKING FORM -->
 <section class="booking" id="prenota">
   <div class="wrap">
@@ -692,6 +746,13 @@ document.querySelectorAll('.m-card .pick').forEach(b=>b.addEventListener('click'
   [...sel.options].forEach(o=>{if(o.value.startsWith(v))sel.value=o.value});
   document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
 }));
+
+// CTA Business Lunch -> vai al form e preseleziona la formula "Light Lunch"
+const blCta=document.getElementById('blCta');
+if(blCta) blCta.addEventListener('click',()=>{
+  document.querySelectorAll('input[name=formula]').forEach(r=>{if(r.value==='Light Lunch')r.checked=true});
+  document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
+});
 
 // ============================================================
 //  CONFIGURAZIONE INVIO FORM
