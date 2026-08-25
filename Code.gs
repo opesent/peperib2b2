@@ -25,7 +25,7 @@
 
 // ======================== CONFIGURAZIONE ========================
 var CONFIG = {
-  RISTORANTE_EMAIL: 'info@peperi.it',                 // dove arriva la notifica interna
+  RISTORANTE_EMAIL: 'dalmineristorazione@gmail.com, info@peperi.it', // dove arriva la notifica interna (più indirizzi separati da virgola)
   MITTENTE_NOME:    'Peperì · Convivialità Mediterranea',
   RISPONDI_A:       'info@peperi.it',                 // reply-to delle email al cliente
   INVIA_RECAP_CLIENTE:       true,                    // email automatica al cliente
