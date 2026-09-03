@@ -315,6 +315,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <span class="tag">Ristorante</span>
         <span class="tag">Pizzeria</span>
         <span class="tag">Cocktail Bar</span>
+        <span class="tag">Fino a 180 persone</span>
       </div>
       <div class="hero-cta">
         <a href="#prenota" class="btn btn-gold">Richiedi un preventivo →</a>
@@ -357,7 +358,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
     <div class="section-head reveal">
       <span class="eyebrow">Disegna il tuo evento</span>
       <h2>Le nostre <b>formule</b></h2>
-      <p>Un'intera squadra a tua disposizione per costruire l'esperienza su misura per la tua azienda.</p>
+      <p>Un'intera squadra a tua disposizione per costruire l'esperienza su misura per la tua azienda. Ospitiamo eventi da un minimo di 40 partecipanti fino a circa 180 persone (capienza nel periodo invernale) — il numero esatto dipende dal gruppo e dalla formula scelta.</p>
     </div>
     <div class="form-grid">
       <div class="f-card reveal">
@@ -498,7 +499,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
       <div class="step reveal"><div class="dot">2</div><h4>Creazione</h4><p>Preparazione dell'evento e definizione dei dettagli.</p></div>
       <div class="step reveal"><div class="dot">3</div><h4>Realizzazione</h4><p>Layout and style selection dell'allestimento.</p></div>
       <div class="step reveal"><div class="dot">4</div><h4>Preparazione</h4><p>Preparazione finale all'interno del budget concordato.</p></div>
-      <div class="step reveal"><div class="dot">5</div><h4>Finalizzazione</h4><p>Presentazione del menù e delle richieste per l'evento.</p></div>
+      <div class="step reveal"><div class="dot">5</div><h4>Finalizzazione</h4><p>Presentazione del menù, preventivo in PDF pronto da inoltrare per l'approvazione interna, e delle richieste per l'evento.</p></div>
       <div class="step reveal"><div class="dot">6</div><h4>Servizio</h4><p>Servizio e gestione richieste post-evento.</p></div>
     </div>
   </div>
@@ -589,6 +590,10 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
           <div class="fg row">
             <div><label>Azienda</label><input type="text" name="company" id="company" placeholder="Nome azienda" required></div>
             <div><label>Referente</label><input type="text" name="name" id="name" placeholder="Nome e cognome" required></div>
+          </div>
+          <div class="fg">
+            <label>P.IVA azienda <span class="opt">(facoltativa, utile per la fattura)</span></label>
+            <input type="text" name="piva" id="piva" placeholder="Es. 01234567890" inputmode="numeric" pattern="[0-9]*" title="Solo numeri">
           </div>
           <div class="fg row">
             <div><label>Email</label><input type="email" name="email" id="email" placeholder="nome@azienda.it" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Inserisci un indirizzo email valido, con @ e dominio completo (es. nome@azienda.com)"></div>
@@ -822,12 +827,12 @@ form.addEventListener('submit',async e=>{
 
   const data={
     'form-name':'preventivo',
-    company:val('company'), name:val('name'), email:val('email'), phone:phoneFull,
+    company:val('company'), name:val('name'), piva:val('piva')||'—', email:val('email'), phone:phoneFull,
     formula:formula, guests:val('guests'), date:val('date'), slot:val('slot'),
     menu:document.getElementById('menuSel').value, servizi:servStr, budget:val('budget'), notes:val('notes')||'—'
   };
 
-  const labels={company:'Azienda',name:'Referente',email:'Email',phone:'Telefono',formula:'Formula',
+  const labels={company:'Azienda',name:'Referente',piva:'P.IVA',email:'Email',phone:'Telefono',formula:'Formula',
     guests:'Partecipanti',date:'Data',slot:'Fascia oraria',menu:'Menù',servizi:'Servizi',budget:'Budget',notes:'Note'};
   document.getElementById('summary').innerHTML=Object.keys(labels)
     .map(k=>`<div><span>${labels[k]}</span><b>${data[k]||'—'}</b></div>`).join('');
@@ -857,6 +862,7 @@ document.getElementById('date').min=new Date().toISOString().split('T')[0];
 // solo numeri mentre si digita: telefono e partecipanti
 document.getElementById('phone').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9 ]/g,'')});
 document.getElementById('guests').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9]/g,'')});
+document.getElementById('piva').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9]/g,'')});
 </script>
 </body>
 </html>

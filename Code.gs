@@ -44,14 +44,14 @@ function doPost(e) {
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['Data invio','Azienda','Referente','Email','Telefono','Formula',
-        'Partecipanti','Data evento','Fascia oraria','Menù','Servizi aggiuntivi','Budget','Note']);
-      sheet.getRange(1, 1, 1, 13).setFontWeight('bold').setBackground('#3a51a0').setFontColor('#ffffff');
+        'Partecipanti','Data evento','Fascia oraria','Menù','Servizi aggiuntivi','Budget','Note','P.IVA']);
+      sheet.getRange(1, 1, 1, 14).setFontWeight('bold').setBackground('#3a51a0').setFontColor('#ffffff');
       sheet.setFrozenRows(1);
     }
 
     sheet.appendRow([ new Date(), p.company||'', p.name||'', p.email||'', p.phone||'',
       p.formula||'', p.guests||'', p.date||'', p.slot||'', p.menu||'', p.servizi||'',
-      p.budget||'', p.notes||'' ]);
+      p.budget||'', p.notes||'', p.piva||'' ]);
 
     // Le email non devono mai bloccare il salvataggio: invio protetto.
     try { inviaEmail_(p); } catch (mailErr) { console.error('Errore invio email: ' + mailErr); }
@@ -72,7 +72,7 @@ function doPost(e) {
 
 function inviaEmail_(p) {
   var righe = [
-    ['Azienda', p.company], ['Referente', p.name], ['Email', p.email], ['Telefono', p.phone],
+    ['Azienda', p.company], ['Referente', p.name], ['P.IVA', p.piva], ['Email', p.email], ['Telefono', p.phone],
     ['Formula', p.formula], ['Partecipanti', p.guests], ['Data evento', p.date],
     ['Fascia oraria', p.slot], ['Menù', p.menu], ['Servizi aggiuntivi', p.servizi],
     ['Budget', p.budget], ['Note', p.notes]
@@ -147,7 +147,7 @@ function doGet() {
 // ==================================================================
 function testInviaEmail() {
   inviaEmail_({
-    company: 'Azienda di Test', name: 'Test Stefania', email: 'opesent@gmail.com',
+    company: 'Azienda di Test', name: 'Test Stefania', piva: '01234567890', email: 'opesent@gmail.com',
     phone: '+39 0000000000', formula: 'Coffee Break', guests: '10', date: '2026-12-01',
     slot: 'Mattina (coffee break)', menu: 'Da definire con lo staff', servizi: 'Nessuno',
     budget: 'Fino a 25 € a persona', notes: 'Riga di test da testInviaEmail()'
