@@ -591,8 +591,24 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
             <div><label>Referente</label><input type="text" name="name" id="name" placeholder="Nome e cognome" required></div>
           </div>
           <div class="fg row">
-            <div><label>Email</label><input type="email" name="email" id="email" placeholder="nome@azienda.it" required></div>
-            <div><label>Telefono</label><input type="tel" name="phone" id="phone" placeholder="+39 ..." required></div>
+            <div><label>Email</label><input type="email" name="email" id="email" placeholder="nome@azienda.it" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Inserisci un indirizzo email valido, con @ e dominio completo (es. nome@azienda.com)"></div>
+            <div>
+              <label>Telefono</label>
+              <div style="display:flex;gap:8px">
+                <select id="phoneCode" style="flex:0 0 auto;width:auto" aria-label="Prefisso">
+                  <option value="+39" selected>🇮🇹 +39</option>
+                  <option value="+41">🇨🇭 +41</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+1">🇺🇸/🇨🇦 +1</option>
+                  <option value="+31">🇳🇱 +31</option>
+                  <option value="+43">🇦🇹 +43</option>
+                </select>
+                <input type="tel" name="phone" id="phone" placeholder="329 1234567" required inputmode="numeric" pattern="[0-9 ]+" title="Solo numeri" style="flex:1 1 auto">
+              </div>
+            </div>
           </div>
 
           <div class="fg">
@@ -606,7 +622,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
           </div>
 
           <div class="fg row">
-            <div><label>N° partecipanti</label><input type="number" name="guests" id="guests" min="1" placeholder="Es. 25" required></div>
+            <div><label>N° partecipanti</label><input type="number" name="guests" id="guests" min="1" step="1" inputmode="numeric" placeholder="Es. 25" required></div>
             <div><label>Data preferita</label><input type="date" name="date" id="date" required></div>
           </div>
           <div class="fg row">
@@ -616,6 +632,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
                 <option value="Da definire">Da definire</option>
                 <option value="Mattina (coffee break)">Mattina (coffee break)</option>
                 <option value="Pranzo">Pranzo</option>
+                <option value="Aperitivo">Aperitivo</option>
                 <option value="Cena">Cena</option>
               </select>
             </div>
@@ -646,7 +663,6 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
           <div class="fg">
             <label>Budget indicativo</label>
             <select name="budget" id="budget">
-              <option value="Da concordare">Da concordare</option>
               <option value="Fino a 25 € a persona">Fino a 25 € a persona</option>
               <option value="25–40 € a persona">25–40 € a persona</option>
               <option value="40–60 € a persona">40–60 € a persona</option>
@@ -676,9 +692,9 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
           <p>Grazie! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto con una proposta su misura. Qui sotto trovi il riepilogo.</p>
           <div class="summary" id="summary"></div>
           <div class="actions">
-            <a href="#" class="btn btn-gold" id="mailBtn">✉️ Mandami un recap</a>
             <button class="btn btn-line" style="color:var(--blue);border-color:var(--blue)" onclick="resetForm()">Invia un'altra richiesta</button>
           </div>
+          <p class="form-note">Il recap ti arriva automaticamente via email all'indirizzo che hai indicato.</p>
         </div>
       </div>
     </div>
@@ -801,9 +817,12 @@ form.addEventListener('submit',async e=>{
   const servStr=servs.length?servs.join(', '):'Nessuno';
   document.getElementById('serviziHidden').value=servStr;
 
+  const phoneDigits=val('phone').replace(/[^0-9]/g,'');
+  const phoneFull=phoneDigits ? `${document.getElementById('phoneCode').value} ${phoneDigits}` : '';
+
   const data={
     'form-name':'preventivo',
-    company:val('company'), name:val('name'), email:val('email'), phone:val('phone'),
+    company:val('company'), name:val('name'), email:val('email'), phone:phoneFull,
     formula:formula, guests:val('guests'), date:val('date'), slot:val('slot'),
     menu:document.getElementById('menuSel').value, servizi:servStr, budget:val('budget'), notes:val('notes')||'—'
   };
@@ -812,11 +831,6 @@ form.addEventListener('submit',async e=>{
     guests:'Partecipanti',date:'Data',slot:'Fascia oraria',menu:'Menù',servizi:'Servizi',budget:'Budget',notes:'Note'};
   document.getElementById('summary').innerHTML=Object.keys(labels)
     .map(k=>`<div><span>${labels[k]}</span><b>${data[k]||'—'}</b></div>`).join('');
-
-  // "Mandami un recap": email indirizzata a CHI ha compilato (campo email del form)
-  const recapLines=Object.keys(labels).map(k=>`${labels[k]}: ${data[k]||'—'}`).join('\n');
-  const recapText=`Ciao ${data.name||''},\n\necco il recap della richiesta che hai inviato a Peperì Business:\n\n${recapLines}\n\nTi ricontatteremo a breve con una proposta su misura.\n— Peperì · Convivialità Mediterranea`;
-  document.getElementById('mailBtn').href=`mailto:${data.email}?subject=${encodeURIComponent('Recap della tua richiesta — Peperì Business')}&body=${encodeURIComponent(recapText)}`;
 
   // 2) invio con stato visibile + timeout di sicurezza (la risposta no-cors non è leggibile)
   const btn=form.querySelector('.submit'); btn.disabled=true; btn.textContent='Invio in corso…';
@@ -840,6 +854,9 @@ form.addEventListener('submit',async e=>{
 function resetForm(){confirmBox.classList.remove('show');form.reset();statusEl.style.display='none';form.style.display='block';form.scrollIntoView({behavior:'smooth'})}
 // min date today
 document.getElementById('date').min=new Date().toISOString().split('T')[0];
+// solo numeri mentre si digita: telefono e partecipanti
+document.getElementById('phone').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9 ]/g,'')});
+document.getElementById('guests').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9]/g,'')});
 </script>
 </body>
 </html>

@@ -135,3 +135,22 @@ function inviaEmail_(p) {
 function doGet() {
   return ContentService.createTextOutput('Peperì Business — endpoint attivo.');
 }
+
+
+// ==================================================================
+// TEST MANUALE: seleziona questa funzione nel menu in alto dell'editor
+// Apps Script (a fianco di "Esegui il deployment") e premi ▶ Esegui.
+// A differenza di doPost, qui NON c'è try/catch: se MailApp fallisce,
+// l'errore appare per intero nel pannello di esecuzione in basso —
+// così vedi la causa vera invece che il buco nero del catch silenzioso.
+// Cambia l'email qui sotto con la tua per il test.
+// ==================================================================
+function testInviaEmail() {
+  inviaEmail_({
+    company: 'Azienda di Test', name: 'Test Stefania', email: 'opesent@gmail.com',
+    phone: '+39 0000000000', formula: 'Coffee Break', guests: '10', date: '2026-12-01',
+    slot: 'Mattina (coffee break)', menu: 'Da definire con lo staff', servizi: 'Nessuno',
+    budget: 'Fino a 25 € a persona', notes: 'Riga di test da testInviaEmail()'
+  });
+  Logger.log('Fatto: se non è comparso nessun errore sopra, le email sono partite.');
+}
