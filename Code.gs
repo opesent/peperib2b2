@@ -78,16 +78,21 @@ function inviaEmail_(p) {
     ['Budget', p.budget], ['Note', p.notes]
   ];
 
+  // Layout a righe impilate (etichetta sopra, valore sotto) invece che a due colonne:
+  // su schermi stretti (mail Android/iOS) una colonna valori allineata a destra con
+  // email/telefono lunghi non va a capo e sfonda il bordo destro dello schermo — impilando
+  // etichetta e valore uno sopra l'altro il problema non si presenta più, indipendentemente
+  // dalla larghezza dello schermo del client email.
   var tabella = righe.map(function (r) {
-    return '<tr>' +
-      '<td style="padding:9px 14px;color:#6b7280;border-bottom:1px solid #eee;font-size:13px">' + r[0] + '</td>' +
-      '<td style="padding:9px 14px;color:#1b2547;font-weight:600;border-bottom:1px solid #eee;text-align:right;font-size:13px">' + (r[1] || '—') + '</td>' +
-      '</tr>';
+    return '<tr><td style="padding:10px 14px;border-bottom:1px solid #eee">' +
+      '<div style="color:#6b7280;font-size:12px;margin-bottom:3px">' + r[0] + '</div>' +
+      '<div style="color:#1b2547;font-weight:600;font-size:14px;word-break:break-word;overflow-wrap:anywhere">' + (r[1] || '—') + '</div>' +
+      '</td></tr>';
   }).join('');
 
   function corpo(titolo, intro) {
     return '' +
-      '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;border:1px solid #eee;border-radius:14px;overflow:hidden">' +
+      '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;width:100%;margin:0 auto;border:1px solid #eee;border-radius:14px;overflow:hidden;box-sizing:border-box">' +
         '<div style="background:#3a51a0;color:#fff;padding:24px 28px">' +
           '<div style="font-size:24px;font-weight:700;letter-spacing:.5px">peperì</div>' +
           '<div style="font-size:11px;letter-spacing:2px;opacity:.85;text-transform:uppercase">Convivialità Mediterranea</div>' +
@@ -95,7 +100,7 @@ function inviaEmail_(p) {
         '<div style="padding:26px 28px;color:#1b2547">' +
           '<h2 style="margin:0 0 8px;color:#3a51a0;font-size:20px">' + titolo + '</h2>' +
           '<p style="margin:0 0 20px;color:#4a5478;font-size:14px;line-height:1.6">' + intro + '</p>' +
-          '<table style="width:100%;border-collapse:collapse">' + tabella + '</table>' +
+          '<table style="width:100%;border-collapse:collapse;table-layout:fixed">' + tabella + '</table>' +
         '</div>' +
         '<div style="background:#f5f3ea;padding:16px 28px;color:#6b7280;font-size:12px;line-height:1.6">' +
           'Peperì · Via Agostino Richelmi 1, 24044 Dalmine (BG)<br>+39 035 04 01 940 · info@peperi.it · www.peperi.it' +
