@@ -12,6 +12,7 @@
   --blue:#3a51a0;
   --blue-deep:#2c3f80;
   --blue-ink:#1b2547;
+  --blue-pale:#dfe6f7;
   --cream:#efece1;
   --cream-soft:#f5f3ea;
   --gold:#bf9f4f;
@@ -110,21 +111,8 @@ section{position:relative;padding:120px 0}
 .float-badge b{font-family:'Fraunces';font-size:2.4rem;display:block;line-height:1}
 .float-badge span{font-size:.82rem;opacity:.85}
 
-/* ===== FORMULE ===== */
-.formule{background:var(--blue);color:#fff}
-.formule .section-head .num,.formule .eyebrow{color:var(--gold-soft)}
-.formule .section-head p{color:#cfd6ee}
-.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.f-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:34px 28px;transition:.4s;position:relative;overflow:hidden}
-.f-card:hover{background:rgba(255,255,255,.12);transform:translateY(-8px)}
-.f-card .ico{width:48px;height:48px;border-radius:12px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:1.3rem}
-.f-card h3{font-size:1.5rem;font-weight:500;margin-bottom:14px}
-.f-card p{font-size:.95rem;color:#d4daee;line-height:1.6}
-.f-card .pick{margin-top:22px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:none;background:none;font-family:'Hanken Grotesk'}
-.f-card .pick:hover{color:#fff}
-
 /* ===== MENU ===== */
-.menus{background:var(--cream-soft)}
+.menus{background:var(--blue-pale)}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .m-card{background:var(--paper);border-radius:22px;padding:40px 34px;box-shadow:0 16px 44px var(--shadow);border-top:5px solid var(--gold);transition:.4s;display:flex;flex-direction:column}
 .m-card:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(27,37,71,.2)}
@@ -258,7 +246,6 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
-  .form-grid{grid-template-columns:1fr 1fr}
   .menu-grid{grid-template-columns:1fr}
   .serv-grid{grid-template-columns:1fr 1fr}
   .bl-cards{grid-template-columns:1fr 1fr}
@@ -275,7 +262,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   .nav-links{display:none}
   .burger{display:flex}
   header.nav{padding:14px 20px}
-  .form-grid,.serv-grid,.about-grid,.foot-grid,.bl-cards{grid-template-columns:1fr}
+  .serv-grid,.about-grid,.foot-grid,.bl-cards{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .fg.row{grid-template-columns:1fr}
   form.req,.confirm{padding:28px}
@@ -289,7 +276,6 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   <a href="#top" class="brand">peperì <small>Business</small></a>
   <nav class="nav-links">
     <a href="#about">Chi siamo</a>
-    <a href="#formule">Formule</a>
     <a href="#menu">Menù</a>
     <a href="#servizi">Servizi</a>
     <a href="#businesslunch">Business Lunch</a>
@@ -319,7 +305,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
       </div>
       <div class="hero-cta">
         <a href="#prenota" class="btn btn-gold">Richiedi un preventivo →</a>
-        <a href="#formule" class="btn btn-line">Scopri le formule</a>
+        <a href="#menu" class="btn btn-line">Scopri il menù</a>
       </div>
     </div>
     <div class="hero-card reveal">
@@ -351,51 +337,13 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
   </div>
 </section>
 
-<!-- FORMULE -->
-<section class="formule" id="formule">
-  <div class="motif"></div>
-  <div class="wrap" style="position:relative;z-index:2">
-    <div class="section-head reveal">
-      <span class="eyebrow">Disegna il tuo evento</span>
-      <h2>Le nostre <b>formule</b></h2>
-      <p>Un'intera squadra a tua disposizione per costruire l'esperienza su misura per la tua azienda. Ospitiamo da piccole cene con clienti fino a più di 150 persone che riempiono l'intero locale, a seconda della formula scelta!</p>
-    </div>
-    <div class="form-grid">
-      <div class="f-card reveal">
-        <div class="ico">☕</div>
-        <h3>Coffee Break</h3>
-        <p>Nella nostra veranda puoi ospitare il tuo team per il meeting e aggiungere un coffee break dedicato.</p>
-        <button class="pick" data-formula="Coffee Break">Seleziona →</button>
-      </div>
-      <div class="f-card reveal">
-        <div class="ico">🥗</div>
-        <h3>Light Lunch</h3>
-        <p>Crea il tuo meeting in veranda durante la mattinata e offri ai tuoi clienti un pranzo leggero per tornare freschi in ufficio.</p>
-        <button class="pick" data-formula="Light Lunch">Seleziona →</button>
-      </div>
-      <div class="f-card reveal">
-        <div class="ico">🍝</div>
-        <h3>Private Lunch</h3>
-        <p>Il pranzo perfetto per i tuoi dipendenti: dopo un meeting, in azienda o come premio per un mese importante.</p>
-        <button class="pick" data-formula="Private Lunch">Seleziona →</button>
-      </div>
-      <div class="f-card reveal">
-        <div class="ico">🍷</div>
-        <h3>Private Dinner</h3>
-        <p>Incontra clienti o dipendenti in un'area riservata del locale. Disponibile a pranzo o a cena, anche l'intera struttura di Peperì.</p>
-        <button class="pick" data-formula="Private Dinner">Seleziona →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- MENU -->
 <section class="menus" id="menu">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Scegli il tuo gusto</span>
-      <h2>Scegli il tuo <b>menù</b></h2>
-      <p>Tre itinerari gastronomici tra fritti, forno e sapori del Mediterraneo. Ogni percorso è personalizzabile insieme al nostro staff.</p>
+      <span class="eyebrow">Disegna il tuo evento</span>
+      <h2>Le nostre <b>formule</b></h2>
+      <p>Un'intera squadra a tua disposizione per costruire l'esperienza su misura per la tua azienda. Ospitiamo da piccole cene con clienti fino a più di 150 persone che riempiono l'intero locale, a seconda della formula scelta!</p>
     </div>
     <div class="menu-grid">
       <div class="m-card reveal">
@@ -573,7 +521,7 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
       <div class="book-side reveal">
         <span class="eyebrow">Contattaci</span>
         <h2>Richiedi il tuo <b>preventivo su misura</b></h2>
-        <p>Compila il modulo con la formula, il numero di partecipanti, il menù, i servizi e il budget: ti ricontattiamo con una proposta personalizzata. A pochi km dall'aeroporto e dalle stazioni di Bergamo e Verdello.</p>
+        <p>Compila il modulo con il numero di partecipanti, la fascia oraria, il menù, i servizi e il budget: ti ricontattiamo con una proposta personalizzata. A pochi km dall'aeroporto e dalle stazioni di Bergamo e Verdello.</p>
         <div class="contacts">
           <div class="ci"><div class="ico">📞</div><div><small>Telefono</small><a href="tel:+39035040190">+39 035 04 01 940</a></div></div>
           <div class="ci"><div class="ico">✉️</div><div><small>Email</small><a href="mailto:info@peperi.it">info@peperi.it</a></div></div>
@@ -613,16 +561,6 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
                 </select>
                 <input type="tel" name="phone" id="phone" placeholder="329 1234567" required inputmode="numeric" pattern="[0-9 ]+" title="Solo numeri" style="flex:1 1 auto">
               </div>
-            </div>
-          </div>
-
-          <div class="fg">
-            <label>Formula desiderata</label>
-            <div class="chips" id="formulaChips">
-              <span class="chip"><input type="radio" name="formula" id="f1" value="Coffee Break"><label for="f1">☕ Coffee Break</label></span>
-              <span class="chip"><input type="radio" name="formula" id="f2" value="Light Lunch"><label for="f2">🥗 Light Lunch</label></span>
-              <span class="chip"><input type="radio" name="formula" id="f3" value="Private Lunch"><label for="f3">🍝 Private Lunch</label></span>
-              <span class="chip"><input type="radio" name="formula" id="f4" value="Private Dinner"><label for="f4">🍷 Private Dinner</label></span>
             </div>
           </div>
 
@@ -724,7 +662,6 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
         <h5>Esplora</h5>
         <ul>
           <li><a href="#about">Chi siamo</a></li>
-          <li><a href="#formule">Le formule</a></li>
           <li><a href="#menu">I menù</a></li>
           <li><a href="#servizi">Servizi aggiuntivi</a></li>
           <li><a href="#prenota">Richiedi preventivo</a></li>
@@ -756,22 +693,17 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scro
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*80)+'ms';io.observe(el)});
 
-// quick-pick from formula/menu cards -> scroll to form + preselect
-document.querySelectorAll('.f-card .pick').forEach(b=>b.addEventListener('click',()=>{
-  const v=b.dataset.formula;
-  document.querySelectorAll('input[name=formula]').forEach(r=>{if(r.value===v)r.checked=true});
-  document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
-}));
+// quick-pick from menu cards -> scroll to form + preselect
 document.querySelectorAll('.m-card .pick').forEach(b=>b.addEventListener('click',()=>{
   const v=b.dataset.menu, sel=document.getElementById('menuSel');
   [...sel.options].forEach(o=>{if(o.value.startsWith(v))sel.value=o.value});
   document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
 }));
 
-// CTA Business Lunch -> vai al form e preseleziona la formula "Light Lunch"
+// CTA Business Lunch -> vai al form e preseleziona la fascia oraria "Pranzo"
 const blCta=document.getElementById('blCta');
 if(blCta) blCta.addEventListener('click',()=>{
-  document.querySelectorAll('input[name=formula]').forEach(r=>{if(r.value==='Light Lunch')r.checked=true});
+  document.getElementById('slot').value='Pranzo';
   document.getElementById('prenota').scrollIntoView({behavior:'smooth'});
 });
 
@@ -817,7 +749,6 @@ form.addEventListener('submit',async e=>{
     showStatus('Per inviare devi accettare la Privacy Policy (spunta in fondo al modulo).','error'); return;
   }
 
-  const formula=(document.querySelector('input[name=formula]:checked')||{}).value||'Da definire';
   const servs=[...document.querySelectorAll('input[name=serv]:checked')].map(c=>c.value);
   const servStr=servs.length?servs.join(', '):'Nessuno';
   document.getElementById('serviziHidden').value=servStr;
@@ -828,11 +759,11 @@ form.addEventListener('submit',async e=>{
   const data={
     'form-name':'preventivo',
     company:val('company'), name:val('name'), piva:val('piva')||'—', email:val('email'), phone:phoneFull,
-    formula:formula, guests:val('guests'), date:val('date'), slot:val('slot'),
+    guests:val('guests'), date:val('date'), slot:val('slot'),
     menu:document.getElementById('menuSel').value, servizi:servStr, budget:val('budget'), notes:val('notes')||'—'
   };
 
-  const labels={company:'Azienda',name:'Referente',piva:'P.IVA',email:'Email',phone:'Telefono',formula:'Formula',
+  const labels={company:'Azienda',name:'Referente',piva:'P.IVA',email:'Email',phone:'Telefono',
     guests:'Partecipanti',date:'Data',slot:'Fascia oraria',menu:'Menù',servizi:'Servizi',budget:'Budget',notes:'Note'};
   document.getElementById('summary').innerHTML=Object.keys(labels)
     .map(k=>`<div><span>${labels[k]}</span><b>${data[k]||'—'}</b></div>`).join('');
