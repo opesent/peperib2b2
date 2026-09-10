@@ -142,6 +142,9 @@ section{position:relative;padding:120px 0}
 .serv-note{margin-top:34px;padding:28px 34px;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0 14px 14px 0}
 .serv-note b{font-family:'Fraunces';font-size:1.25rem;font-weight:500;color:var(--gold-soft)}
 
+.hours-note{margin-bottom:22px;padding:16px 20px;border-left:3px solid var(--gold);background:var(--paper);border-radius:0 12px 12px 0;font-size:.88rem;color:var(--blue-ink);line-height:1.6}
+.hours-note b{color:var(--blue-deep)}
+
 /* ===== PROCESSO ===== */
 .process{background:var(--cream)}
 .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;margin-top:30px}
@@ -531,6 +534,9 @@ footer{background:var(--blue-ink);color:#fff;padding:70px 0 36px;position:relati
       </div>
 
       <div class="reveal">
+        <div class="hours-note">
+          <b>Orari di apertura</b> — utili per scegliere data e fascia oraria: Mar-Gio e Dom 12:00–14:30 e 18:30–00:00 · Ven 12:00–14:30 e 18:30–2:00 · Sab dalle 18:30 · Lun chiuso. Un evento fuori da questi orari (es. sabato mattina, lunedì) resta possibile con l'esclusiva del locale o una quota minima a persona: scrivici pure, ne parliamo insieme nella proposta.
+        </div>
         <form class="req" id="reqForm" name="preventivo" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="preventivo">
           <input type="hidden" name="servizi" id="serviziHidden">
