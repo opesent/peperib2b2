@@ -35,6 +35,14 @@ var CONFIG = {
 
 
 function doPost(e) {
+  var p = (e && e.parameter) ? e.parameter : {};
+  if (p.action === 'saveDraft') return jsonOutput_(saveDraftHandler_(p));
+  if (p.action === 'markSent') return jsonOutput_(markSentHandler_(p));
+  return doPostFormSubmit_(e);
+}
+
+
+function doPostFormSubmit_(e) {
   var lock = LockService.getScriptLock();
   lock.tryLock(10000);
   try {
@@ -136,9 +144,155 @@ function inviaEmail_(p) {
 }
 
 
-// Apri questo URL nel browser per verificare che l'endpoint sia vivo.
-function doGet() {
+// Apri questo URL nel browser per verificare che l'endpoint sia vivo (senza ?action=... risponde così).
+function doGet(e) {
+  var p = (e && e.parameter) ? e.parameter : {};
+  if (p.action === 'listLeads') return jsonOutput_(listLeadsHandler_(p));
+  if (p.action === 'setupPassword') return jsonOutput_(setupPasswordHandler_(p));
   return ContentService.createTextOutput('Peperì Business — endpoint attivo.');
+}
+
+
+// ==================================================================
+//  DASHBOARD BOZZE (esterna, per Ornella e Alice — non richiede claude.ai)
+//  Protetta da una password condivisa salvata nelle Script Properties
+//  (mai nel codice sorgente in chiaro). Si imposta UNA SOLA VOLTA
+//  chiamando .../exec?action=setupPassword&newpwd=... : la funzione si
+//  autoblocca subito dopo (rifiuta ogni chiamata successiva se la
+//  property è già impostata), quindi è sicuro lasciarla nel codice.
+// ==================================================================
+
+function setupPasswordHandler_(p) {
+  var props = PropertiesService.getScriptProperties();
+  if (props.getProperty('DASHBOARD_PWD')) {
+    return { result: 'error', message: 'Password già impostata: questo endpoint è a uso singolo e si è già autobloccato.' };
+  }
+  if (!p.newpwd) return { result: 'error', message: 'newpwd mancante' };
+  props.setProperty('DASHBOARD_PWD', p.newpwd);
+  return { result: 'success' };
+}
+
+function jsonOutput_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function checkPwd_(p) {
+  var stored = PropertiesService.getScriptProperties().getProperty('DASHBOARD_PWD');
+  return !!(stored && p.pwd && p.pwd === stored);
+}
+
+function getRichiesteSheet_() {
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Richieste');
+}
+
+// Legge l'intestazione e restituisce {nomeColonna: indiceColonna1based}.
+function getHeaderMap_(sheet) {
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var map = {};
+  headers.forEach(function (h, i) { if (h) map[h] = i + 1; });
+  return map;
+}
+
+// Aggiunge le colonne della dashboard se non esistono ancora (idempotente).
+function ensureDashboardColumns_(sheet) {
+  var map = getHeaderMap_(sheet);
+  var lastCol = sheet.getLastColumn();
+  ['Bozza risposta', 'Stato bozza', 'Bozza aggiornata il'].forEach(function (h) {
+    if (!map[h]) {
+      lastCol += 1;
+      sheet.getRange(1, lastCol).setValue(h).setFontWeight('bold').setBackground('#3a51a0').setFontColor('#ffffff');
+      map[h] = lastCol;
+    }
+  });
+  return map;
+}
+
+function listLeadsHandler_(p) {
+  if (!checkPwd_(p)) return { result: 'error', message: 'Password non valida' };
+  try {
+    return { result: 'success', leads: listLeads_() };
+  } catch (err) {
+    return { result: 'error', message: err.toString() };
+  }
+}
+
+function listLeads_() {
+  var sheet = getRichiesteSheet_();
+  if (!sheet || sheet.getLastRow() < 2) return [];
+  var map = ensureDashboardColumns_(sheet);
+  var numRows = sheet.getLastRow() - 1;
+  var numCols = sheet.getLastColumn();
+  var data = sheet.getRange(2, 1, numRows, numCols).getValues();
+  var leads = [];
+  data.forEach(function (row) {
+    var azienda = map['Azienda'] ? row[map['Azienda'] - 1] : '';
+    var email = map['Email'] ? row[map['Email'] - 1] : '';
+    // stesso criterio della routine automatica: riga ambigua (campi chiave vuoti) -> scartata
+    if (!azienda || !email) return;
+
+    var lead = {};
+    Object.keys(map).forEach(function (h) {
+      var v = row[map[h] - 1];
+      lead[h] = (v instanceof Date) ? v.toISOString() : v;
+    });
+    lead.id = lead['Data invio']; // chiave stabile, stessa usata dalla routine per il match
+    leads.push(lead);
+  });
+  return leads;
+}
+
+// Trova la riga (1-based, comprensiva di header) il cui "Data invio" combacia con id.
+function findRowIndexById_(sheet, map, id) {
+  if (!map['Data invio']) return -1;
+  var numRows = sheet.getLastRow() - 1;
+  if (numRows < 1) return -1;
+  var values = sheet.getRange(2, map['Data invio'], numRows, 1).getValues();
+  for (var i = 0; i < values.length; i++) {
+    var v = values[i][0];
+    var vid = (v instanceof Date) ? v.toISOString() : String(v);
+    if (vid === id) return i + 2;
+  }
+  return -1;
+}
+
+function saveDraftHandler_(p) {
+  if (!checkPwd_(p)) return { result: 'error', message: 'Password non valida' };
+  if (!p.id) return { result: 'error', message: 'id mancante' };
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var sheet = getRichiesteSheet_();
+    var map = ensureDashboardColumns_(sheet);
+    var row = findRowIndexById_(sheet, map, p.id);
+    if (row === -1) return { result: 'error', message: 'Lead non trovato' };
+    sheet.getRange(row, map['Bozza risposta']).setValue(p.bozza || '');
+    sheet.getRange(row, map['Stato bozza']).setValue('modificata');
+    sheet.getRange(row, map['Bozza aggiornata il']).setValue(new Date());
+    return { result: 'success' };
+  } catch (err) {
+    return { result: 'error', message: err.toString() };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function markSentHandler_(p) {
+  if (!checkPwd_(p)) return { result: 'error', message: 'Password non valida' };
+  if (!p.id) return { result: 'error', message: 'id mancante' };
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var sheet = getRichiesteSheet_();
+    var map = ensureDashboardColumns_(sheet);
+    var row = findRowIndexById_(sheet, map, p.id);
+    if (row === -1) return { result: 'error', message: 'Lead non trovato' };
+    sheet.getRange(row, map['Stato bozza']).setValue('inviata');
+    return { result: 'success' };
+  } catch (err) {
+    return { result: 'error', message: err.toString() };
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 
